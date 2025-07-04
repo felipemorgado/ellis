@@ -1,0 +1,17 @@
+services:
+  # Serviço da sua aplicação Python/Uvicorn
+  app:
+    # Constrói a imagem a partir do Dockerfile no diretório atual.
+    build: .
+    container_name: api
+
+    # Mapeia a porta 8000 do seu computador (host) para a porta 8000 do contêiner,
+    # que é a porta exposta no seu Dockerfile.
+    ports:
+      - "8000:8000"
+
+    # Monta o diretório atual ('.') dentro do diretório '/app' do contêiner.
+    # Isso é essencial para que a flag '--reload' do Uvicorn funcione,
+    # pois as alterações no seu código local serão refletidas instantaneamente no contêiner.
+    volumes:
+      - .:/app
